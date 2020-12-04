@@ -13,7 +13,7 @@ function repite(){
     bola.dibuja();
     bola.gol();
     game.pintar();
-    game.mover();
+    
     pai.pintar();
     pad.pintar();
    
@@ -38,9 +38,9 @@ class game{
 
     jugar(){
         bola= new bola(aleatorio(50,950),aleatorio(2,3),aleatorio(3,5),svg);
-         pai= new palo("palo1",50,350,svg);
-         pad= new palo("palo2",2450,350,svg);
-    
+         pai= new palo("palo1",50,360,svg);
+         pad= new palo("palo2",2450,360,svg);
+         this.mover();
     
     
     }
@@ -51,6 +51,12 @@ class game{
                     pai.moverArriba();
                     break;
                 case 's':
+                    pai.moverAbajo();
+                    break;
+                case 'W':
+                    pai.moverArriba();
+                    break;
+                case 'S':
                     pai.moverAbajo();
                     break;
                 case 'ArrowUp':
@@ -222,13 +228,18 @@ class palo{
             })/*/
         }
         moverArriba(){
-            this.y=this.y-0.1;
+            if(this.y>=0){
+            this.y=this.y-60;
+            }
         }
         moverAbajo(){
-            this.y=this.y+0.1;
+            if(this.y<=820){
+            this.y=this.y+60;
+            }
         }
         pintar(){
             this.tagpalo.setAttributeNS(null,"y",this.y);
+            
         }
 
 }
